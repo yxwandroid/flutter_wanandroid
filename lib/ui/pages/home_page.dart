@@ -9,6 +9,10 @@ class HomePage extends StatelessWidget {
 
   final String labelId;
 
+
+  ///
+  /// 滚动界面布局
+  ///
   Widget buildBanner(BuildContext context, List<BannerModel> list) {
     if (ObjectUtil.isEmpty(list)) {
       return new Container(height: 0.0);
@@ -39,6 +43,10 @@ class HomePage extends StatelessWidget {
     );
   }
 
+
+  ///
+  /// 推荐项目布局
+  ///
   Widget buildRepos(BuildContext context, List<ReposModel> list) {
     if (ObjectUtil.isEmpty(list)) {
       return new Container(height: 0.0);
@@ -76,11 +84,15 @@ class HomePage extends StatelessWidget {
         isHome: true,
       );
     }).toList();
+    //推荐公众号控件集合
     List<Widget> children = new List();
+
+    //推荐公众号头部元素
     children.add(new HeaderItem(
-      titleColor: Colors.green,
-      leftIcon: Icons.library_books,
-      titleId: Ids.recWxArticle,
+      titleColor: Colors.green,   //推荐公众号图标颜色
+      leftIcon: Icons.library_books,  //推荐公众号图标
+      titleId: Ids.recWxArticle, //推荐公众号
+      //推荐公众号点击之后跳转的界面
       onTap: () {
         NavigatorUtil.pushTabPage(context,
             labelId: Ids.titleWxArticleTree, titleId: Ids.titleWxArticleTree);
@@ -156,13 +168,13 @@ class HomePage extends StatelessWidget {
                       );
                     }),
                 buildBanner(context, snapshot.data),
-                new StreamBuilder(
+                new StreamBuilder( //推荐项目布局
                     stream: bloc.recReposStream,
                     builder: (BuildContext context,
                         AsyncSnapshot<List<ReposModel>> snapshot) {
                       return buildRepos(context, snapshot.data);
                     }),
-                new StreamBuilder(
+                new StreamBuilder(  //公众号布局
                     stream: bloc.recWxArticleStream,
                     builder: (BuildContext context,
                         AsyncSnapshot<List<ReposModel>> snapshot) {
@@ -173,6 +185,9 @@ class HomePage extends StatelessWidget {
           );
         });
   }
+
+
+
 }
 
 class NumberSwiperIndicator extends SwiperIndicator {

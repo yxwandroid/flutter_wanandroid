@@ -3,6 +3,9 @@ import 'package:flutter_wanandroid/common/component_index.dart';
 
 bool isEventsInit = true;
 
+///
+/// 动态界面
+///
 class EventsPage extends StatelessWidget {
   const EventsPage({Key key, this.labelId}) : super(key: key);
 

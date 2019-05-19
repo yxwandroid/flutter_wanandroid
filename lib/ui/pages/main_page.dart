@@ -55,6 +55,12 @@ class MainPage extends StatelessWidget {
   }
 }
 
+
+
+
+///
+/// 创建顶部Tabs
+///
 class TabLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -70,6 +76,8 @@ class TabLayout extends StatelessWidget {
   }
 }
 
+
+///创建对应Tab的 内存Widget
 class TabBarViewLayout extends StatelessWidget {
   Widget buildTabView(BuildContext context, _Page page) {
     String labelId = page.labelId;

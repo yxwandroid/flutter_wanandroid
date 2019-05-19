@@ -46,6 +46,12 @@ class SplashPageState extends State<SplashPage> {
     });
   }
 
+
+
+
+  ///
+  /// 加载网络闪屏界面
+  ///
   void _loadSplashData() {
     _splashModel = SpHelper.getObject<SplashModel>(Constant.key_splash_model);
     if (_splashModel != null) {
@@ -66,6 +72,11 @@ class SplashPageState extends State<SplashPage> {
     });
   }
 
+
+
+  ///
+  /// 初始化引导界面状态
+  ///
   void _initBanner() {
     _initBannerData();
     setState(() {
@@ -73,6 +84,11 @@ class SplashPageState extends State<SplashPage> {
     });
   }
 
+
+
+  ///
+  ///初始化导航界面widget
+  ///
   void _initBannerData() {
     for (int i = 0, length = _guideList.length; i < length; i++) {
       if (i == length - 1) {
@@ -128,6 +144,11 @@ class SplashPageState extends State<SplashPage> {
     }
   }
 
+
+
+  ///
+  /// 跳转定时方法
+  ///
   void _doCountDown() {
     setState(() {
       _status = 1;
@@ -149,6 +170,11 @@ class SplashPageState extends State<SplashPage> {
     Navigator.of(context).pushReplacementNamed('/MainPage');
   }
 
+
+
+  ///
+  /// 加载启动屏
+  ///
   Widget _buildSplashBg() {
     return new Image.asset(
       Utils.getImgPath('splash_bg'),
@@ -158,6 +184,11 @@ class SplashPageState extends State<SplashPage> {
     );
   }
 
+
+
+  ///
+  /// 创建闪屏widget
+  ///
   Widget _buildAdWidget() {
     if (_splashModel == null) {
       return new Container(
@@ -188,6 +219,11 @@ class SplashPageState extends State<SplashPage> {
     );
   }
 
+
+  ///
+  /// offstage 显示隐藏布局
+  /// Stack  层叠布局
+  ///
   @override
   Widget build(BuildContext context) {
     return new Material(
@@ -197,7 +233,7 @@ class SplashPageState extends State<SplashPage> {
             offstage: !(_status == 0),
             child: _buildSplashBg(),
           ),
-          new Offstage(
+          new Offstage(  // 引导界面布局
             offstage: !(_status == 2),
             child: ObjectUtil.isEmpty(_bannerList)
                 ? new Container()

@@ -31,6 +31,11 @@ class MyAppState extends State<MyApp> {
     _initListener();
   }
 
+
+
+  ///
+  /// 初始化网络请求相关
+  ///
   void _init() {
 //    DioUtil.openDebug();
     Options options = DioUtil.getDefOptions();
@@ -39,6 +44,9 @@ class MyAppState extends State<MyApp> {
     DioUtil().setConfig(config);
   }
 
+  ///
+  /// mounted   为true 的时候代表 已经加载成功
+  ///
   void _initAsync() async {
     await SpUtil.getInstance();
     if (!mounted) return;
@@ -52,6 +60,14 @@ class MyAppState extends State<MyApp> {
     });
   }
 
+
+
+
+
+  ///
+  /// 加载国际化相关配置
+  /// 加载主题配置文件
+  ///
   void _loadLocale() {
     setState(() {
       LanguageModel model =

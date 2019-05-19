@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid/common/component_index.dart';
-
+///
+/// 体系item布局
+///
+///
 class TreeItem extends StatelessWidget {
   const TreeItem(this.model, {Key key}) : super(key: key);
 

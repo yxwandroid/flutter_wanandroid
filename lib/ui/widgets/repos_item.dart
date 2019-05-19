@@ -2,19 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid/common/component_index.dart';
 
 class ReposItem extends StatelessWidget {
-  const ReposItem(
-    this.model, {
-    Key key,
-    this.isHome,
-  }) : super(key: key);
+
+
+  ///
+  /// 构造方法
+  ///
+  const ReposItem(this.model, {Key key, this.isHome,}) : super(key: key);
 
   final ReposModel model;
   final bool isHome;
+
+
+
 
   @override
   Widget build(BuildContext context) {
     return new InkWell(
       onTap: () {
+
+        //点击之后跳转到webView
         NavigatorUtil.pushWeb(context,
             title: model.title, url: model.link, isHome: isHome);
       },
