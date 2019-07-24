@@ -1,8 +1,6 @@
 PODS:
   - device_info (0.0.1):
     - Flutter
-  - flustars (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -21,7 +19,6 @@ PODS:
 
 DEPENDENCIES:
   - device_info (from `.symlinks/plugins/device_info/ios`)
-  - flustars (from `.symlinks/plugins/flustars/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
@@ -36,8 +33,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   device_info:
     :path: ".symlinks/plugins/device_info/ios"
-  flustars:
-    :path: ".symlinks/plugins/flustars/ios"
   Flutter:
     :path: ".symlinks/flutter/ios"
   path_provider:
@@ -53,7 +48,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   device_info: 3ebad48f726348f69abd802f3334a8d1ed795fbd
-  flustars: 68f8784f3841ce82350ef82598e3b5bc29c36532
   Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259

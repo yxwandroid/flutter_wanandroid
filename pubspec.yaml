@@ -11,6 +11,7 @@ version: 0.1.5
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
+#    sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -38,11 +39,13 @@ dependencies:
   # rxdart https://github.com/ReactiveX/rxdart
   rxdart: ^0.21.0
   # https://github.com/renefloor/flutter_cached_network_image
-  cached_network_image: ^0.7.0
+#  cached_network_image: 0.7.0
+  cached_network_image: ^1.1.1
   # https://github.com/flutter/plugins/tree/master/packages/url_launcher
   url_launcher: ^5.0.2
   # https://github.com/peng8350/flutter_pulltorefresh
-  pull_to_refresh: ^1.1.6
+#  pull_to_refresh: ^1.1.6
+  pull_to_refresh: 1.1.6
   # device_info
   device_info: ^0.4.0+1
   # webview_flutter
