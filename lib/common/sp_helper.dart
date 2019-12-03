@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:common_utils/common_utils.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter_wanandroid/common/common.dart';
+import 'package:flutter_wanandroid/data/protocol/models.dart';
 import 'package:flutter_wanandroid/models/models.dart';
 
 class SpHelper {
@@ -16,7 +17,7 @@ class SpHelper {
   ///
   /// SpHelper.putObject(key, UserModel);
   ///
-  static void putObject<T>(String key, Object value) {
+  static void _putObject<T>(String key, Object value) {
     switch (T) {
       case int:
         SpUtil.putInt(key, value);
@@ -39,27 +40,8 @@ class SpHelper {
     }
   }
 
-  static Object getObject<T>(String key) {
-    Map map = SpUtil.getObject(key);
-    if (map == null) return null;
-    Object obj;
-    switch (T) {
-      case SplashModel:
-        obj = SplashModel.fromJson(map);
-        break;
-      case LanguageModel:
-        obj = LanguageModel.fromJson(map);
-        break;
-      case VersionModel:
-        obj = VersionModel.fromJson(map);
-        break;
-      default:
-        break;
-    }
-    return obj;
-  }
-
   static String getThemeColor() {
-    return SpUtil.getString(Constant.key_theme_color, defValue: 'gray');
+    return SpUtil.getString(Constant.key_theme_color,
+        defValue: 'deepPurpleAccent');
   }
 }

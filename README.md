@@ -5,6 +5,15 @@
 有关项目最新动态，可以关注App内第一条Hot Item信息。
 
 ### 运行本项目注意！！！
+本项目运行环境要求! Flutter Version (beta v1.10.7)
+```
+ps：作者Futter版本
+[✓] Flutter (Channel beta, v1.10.7, locale zh-Hans-CN)
+
+ps：以上是最低支持版本，如不是，请自行升级！
+
+flutter upgrade
+```
 由于在国内访问Flutter有时可能会受到限制，clone项目后，请勿直接packages get，建议运行如下目录行：
 ```
 export PUB_HOSTED_URL=https://pub.flutter-io.cn  
@@ -13,7 +22,38 @@ flutter packages get
 flutter run --release
 ```
 
+### 近期github无法预览图片和外链下载。
+1、App无法下载问题   
+
+这里提供最新下载方式。[App链接](https://github.com/Sky24n/Doc)
+  
+2、无法查看截图，大家可以去简书或掘金查看！  
+  
+[简书地址](https://www.jianshu.com/p/be0107298bc5)    
+
+[掘金地址](https://juejin.im/post/5c380b336fb9a049fd100eff)
+
+
+### [开源详情！！！](https://github.com/Sky24n/flutter_wanandroid/issues/66)  
+一、Flutter常用工具类库全面升级 [flustars](https://github.com/Sky24n/flustars)
+1. SpUtil 全面支持读取对象，对象列表。无需通过SpHelper二次转换。
+2. ScreenUtil 兼容横/纵屏适配。  
+3. DirectoryUtil 新增文件目录工具类。   
+   
+二、Flutter全局屏幕适配库 [auto_size](https://github.com/flutterchina/auto_size)   
+
+三、基础组件库[base_library](https://github.com/Sky24n/FlutterRepos)，方便多个项目共用。  
+另外附送[login_demo](https://github.com/Sky24n/FlutterRepos/tree/master/login_demo)示例！关于App启动时，未登录跳登录页，已登录进主页。
+
 ### [更新说明](./CHANGELOGS.md)
+### v0.2.5 (2019.11.16)
+1.基础库升级。  
+2.一些优化~。
+
+### v0.2.2 (2019.07.02)
+1.基础库升级。  
+2.修复OPPO R15详情页问题。  
+3.一些优化~。
 
 ### v0.2.1 (2019.05.08)
 1.新增登录/注册。  
@@ -49,16 +89,11 @@ flutter run --release
 <img src="https://gitee.com/uploads/images/2019/0506/004900_5e0bd537_506864.png" width="240">  <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_wanandroid/splash_video.gif" width="240">  <img src="https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_wanandroid/upgrade_download.gif" width="240">    
 
 ### 安卓Apk
-如需体验版本升级功能，可以下载旧版apk。  
-  
-点击下载  [新版v0.2.1](https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_wanandroid.apk)  ---  [旧版v0.2.0](https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_wanandroid_old.apk)  
+点击下载  [新版v0.2.5](https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppStore/flutter_wanandroid.apk)   
    
-扫码下载 新版v0.2.1  
+扫码下载 新版v0.2.5  
 ![flutter_wanandroid](https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_wanandroid/qrcode.png)
   
-扫码下载 旧版v0.2.0    
-![flutter_wanandroid](https://raw.githubusercontent.com/Sky24n/LDocuments/master/AppImgs/flutter_wanandroid/qrcode1.png)
-
 ### iOS：请自行clone项目代码运行。
 
 ## App目录结构
@@ -310,7 +345,8 @@ ScreenUtil.getInstance().getHeight(size); //返回根据屏幕高适配后尺寸
 ScreenUtil.getInstance().getWidthPx(sizePx); //sizePx 单位px
 ScreenUtil.getInstance().getHeightPx(sizePx); //sizePx 单位px
 ScreenUtil.getInstance().getSp(fontSize); //返回根据屏幕宽适配后字体尺寸
-
+  
+double adapterSize = ScreenUtil.getInstance().getAdapterSize(100);
 ```
 方案二、依赖context
 ```dart
@@ -323,6 +359,8 @@ ScreenUtil.getScreenH(context); //屏幕 高
 ScreenUtil.getScaleW(context, size); //返回根据屏幕宽适配后尺寸（单位 dp or pt）
 ScreenUtil.getScaleH(context, size); //返回根据屏幕高适配后尺寸 （单位 dp or pt）
 ScreenUtil.getScaleSp(context, size) ;//返回根据屏幕宽适配后字体尺寸
+  
+double adapterSize = ScreenUtil.getAdapterSizeCtx(context, 100)
 ```
 ### Flutter 数据存储  [SpUtil](https://github.com/Sky24n/flustars)
 单例"同步" SharedPreferences 工具类。  
@@ -340,8 +378,7 @@ ScreenUtil.getScaleSp(context, size) ;//返回根据屏幕宽适配后字体尺�
     city.name = "成都市";
     SpUtil.putObject("loc_city", city);
   
-    Map dataStr = SpUtil.getObject("loc_city");
-    City hisCity = dataStr == null ? null : City.fromJson(dataStr);
+    City hisCity = SpUtil.getObj("loc_city", (v) => City.fromJson(v)); 
     print("thll Str: " + (hisCity == null ? "null" : hisCity.toString()));
   
     /// save object list example.
@@ -351,11 +388,7 @@ ScreenUtil.getScaleSp(context, size) ;//返回根据屏幕宽适配后字体尺�
     list.add(new City(name: "北京市"));
     SpUtil.putObjectList("loc_city_list", list);
   
-    List<Map> dataList = SpUtil.getObjectList("loc_city_list");
-    List<City> _cityList = dataList?.map((value) {
-      return City.fromJson(value);
-    })?.toList();
-
+    List<City> _cityList = SpUtil.getObjList("loc_city_list", (v) => City.fromJson(v));
     print("thll List: " + (_cityList == null ? "null" : _cityList.toString()));
 ```
 
@@ -408,14 +441,14 @@ ScreenUtil.getScaleSp(context, size) ;//返回根据屏幕宽适配后字体尺�
 ④ [Streams-Block-Reactive-Programming-in-Flutter](https://github.com/boeledi/Streams-Block-Reactive-Programming-in-Flutter) 
 
 ### 开源库
-1. Dart常用工具类库[common_utils][common_utils_github]（作者）  
+1. Dart常用工具类库[common_utils][common_utils_github]  
    该库包含TimerUtil（倒计时，定时任务），TimelineUtil（时间轴），DateUtil（日期格式化），RegexUtil（正则验证手机号，身份证，邮箱等等），RegexUtil（正则验证手机号，身份证，邮箱等等），NumUtil（保留x位小数, 精确加、减、乘、除, 防止精度丢失），MoneyUtil（元转分，分转元），ObjectUtil（判空），LogUtil（简单封装打印日志）。  
    如果你有不错的纯dart工具类或对已有对工具类有更好的优化建议，欢迎PR，大家一起维护～  
-2. Flutter常用工具类库[flustars][flustars_github]（作者）  
+2. Flutter常用工具类库[flustars][flustars_github]  
    该库包含SpUtil（单例"同步" SharedPreferences 工具类），ScreenUtil（屏幕适配），WidgetUtil（Widget渲染监听，获取Widget宽高，在屏幕上的坐标）。  
    如果你有不错的Flutter工具类或对已有对工具类有更好的优化建议，欢迎PR，大家一起维护～   
-3. 汉字转拼音库[lpinyin](https://github.com/flutterchina/lpinyin)（作者）  
-4. 国际化/多语言库[fluintl](https://github.com/Sky24n/fluintl)（作者）  
+3. 汉字转拼音库[lpinyin](https://github.com/flutterchina/lpinyin)  
+4. 国际化/多语言库[fluintl](https://github.com/Sky24n/fluintl)  
 5. UI组件库[flukit](https://github.com/flutterchina/flukit)  
 6. 网络请求[dio](https://github.com/flutterchina/dio)  
 7. 图片加载[cached_network_image](https://github.com/renefloor/flutter_cached_network_image)  
@@ -423,7 +456,7 @@ ScreenUtil.getScaleSp(context, size) ;//返回根据屏幕宽适配后字体尺�
 9. [url_launcher](https://github.com/flutter/plugins/tree/master/packages/url_launcher)  
 10. 点赞效果[LikeButton](https://github.com/yumi0629/LikeButton)  
 11. 安卓webview增加滚动监听[webview_flutter](https://github.com/Sky24n/plugins/tree/master/packages/webview_flutter)  
-12. 城市列表[azlistview](https://github.com/flutterchina/azlistview)（作者）  
+12. 城市列表[azlistview](https://github.com/flutterchina/azlistview)    
 
 ### 项目问题汇总
 Q1：Flutter国际化系统切换iOS不生效问题？  
